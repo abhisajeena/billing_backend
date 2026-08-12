@@ -1,0 +1,37 @@
+const express = require("express");
+const cors = require("cors");
+
+const app = express();
+const authRoutes = require("./src/features/auth/auth.routes");
+const companyRoutes = require("./src/features/company/company.routes");
+const clientRoutes = require("./src/features/clients/client.routes");
+const billRoutes = require("./src/features/bills/bill.routes");
+const dashboardRoutes = require("./src/features/dashboard/dashboard.routes");
+const errorHandler = require("./src/middleware/errorHandler");
+const notFound = require("./src/middleware/notFound");
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Feature Routes
+app.use("/api/auth", authRoutes);
+app.use("/api/company", companyRoutes);
+app.use("/api/clients", clientRoutes);
+app.use("/api/bills", billRoutes);
+app.use("/api/dashboard", dashboardRoutes);
+
+app.use(notFound);
+
+
+app.use(errorHandler);
+
+// Test Route
+app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "Billing API Running Successfully"
+    });
+});
+
+module.exports = app;
