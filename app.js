@@ -10,7 +10,12 @@ const dashboardRoutes = require("./src/features/dashboard/dashboard.routes");
 const errorHandler = require("./src/middleware/errorHandler");
 const notFound = require("./src/middleware/notFound");
 // Middlewares
-app.use(cors());
+app.use(
+    cors({
+        origin: "https://friendly-clafoutis-b98e5e.netlify.app",
+        credentials: true,
+    })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
