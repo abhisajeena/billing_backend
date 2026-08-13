@@ -13,7 +13,7 @@ const notFound = require("./src/middleware/notFound");
 
 // Allowed frontend URLs
 const allowedOrigins = [
-    "https://friendly-clafoutis-b98e5e.netlify.app",
+    "https://friendly-clafoutis-b98e5e.netlify.app/",
     "http://localhost:5173",
     "http://localhost:5174",
 ];
