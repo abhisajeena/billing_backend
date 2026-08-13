@@ -8,12 +8,13 @@ const companyRoutes = require("./src/features/company/company.routes");
 const clientRoutes = require("./src/features/clients/client.routes");
 const billRoutes = require("./src/features/bills/bill.routes");
 const dashboardRoutes = require("./src/features/dashboard/dashboard.routes");
+
 const errorHandler = require("./src/middleware/errorHandler");
 const notFound = require("./src/middleware/notFound");
 
 // Allowed frontend URLs
 const allowedOrigins = [
-    "https://friendly-clafoutis-b98e5e.netlify.app/",
+    "https://friendly-clafoutis-b98e5e.netlify.app",
     "http://localhost:5173",
     "http://localhost:5174",
 ];
@@ -22,7 +23,8 @@ const allowedOrigins = [
 app.use(
     cors({
         origin: function (origin, callback) {
-            // Allow requests without an origin (Postman, mobile apps, etc.)
+
+            // Allow Postman / mobile / server requests
             if (!origin) {
                 return callback(null, true);
             }
@@ -47,6 +49,7 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/bills", billRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 
+// Error handling
 app.use(notFound);
 app.use(errorHandler);
 
